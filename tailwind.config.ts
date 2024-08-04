@@ -16,6 +16,6 @@ const config: Config = {
       colors: { grayHoverColor: "#a4acba", grayBgColor: "#1d232a" },
     },
   },
-  plugins: [],
+  plugins: [require("daisyui")],
 };
 export default config;
