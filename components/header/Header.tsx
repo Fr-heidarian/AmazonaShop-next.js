@@ -1,5 +1,6 @@
 import Link from "next/link";
 import SearchBox from "./SearchBox";
+import Menu from "./Menu";
 
 export default function Header() {
   return (
@@ -22,6 +23,7 @@ export default function Header() {
         </svg>
         <Link href={"/"}>AmazonShop</Link>
         <SearchBox />
+        <Menu />
       </nav>
     </header>
   );
