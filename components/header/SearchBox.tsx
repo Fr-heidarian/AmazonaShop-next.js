@@ -1,15 +1,15 @@
 export default function SearchBox() {
   return (
     <form>
-      <select className="bg-grayBgColor p-4 rounded-lg text-white">
+      <select className="btn btn-neutral">
         <option value={"all"}>All</option>
       </select>
       <input
         type="text"
         placeholder="Search"
-        className="bg-grayBgColor w-48 p-4 rounded-lg"
+        className="bg-neutral text-grayHoverColor w-48 p-3 rounded-lg"
       />
-      <button className="bg-grayBgColor text-white p-4 rounded-lg">Search</button>
+      <button className="btn btn-neutral">Search</button>
     </form>
   );
 }
