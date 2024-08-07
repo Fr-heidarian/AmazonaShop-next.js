@@ -7,7 +7,7 @@ export default function Home() {
       <h2 className="text-2xl ">Latest Products</h2>
       <div>
         {data.products.map((p) => (
-          <ProductCard key={p.slug} />
+          <ProductCard key={p.slug} product={p} />
         ))}
       </div>
     </>
