@@ -1,13 +1,14 @@
 import { product } from "@/lib/models/ProductModel";
 import Link from "next/link";
 import Image from "next/image";
+import Rating from "./Rating";
 
 type props = {
   product: product;
 };
 
 export default function ProductCard({ product }: props) {
-  const { image, slug, name, brand, price } = product;
+  const { image, slug, name, brand, price, rating, numReviews } = product;
 
   return (
     <div className="card bg-secondary-content mb-4 rounded-lg shadow-lg">
@@ -29,6 +30,7 @@ export default function ProductCard({ product }: props) {
         <Link href={`/products/${slug}`}>
           <h2 className="card-title">{name}</h2>
         </Link>
+        <Rating rating={rating} numReviews={numReviews} />
         <p>{brand}</p>
         <div className="card-actions">
           <span className="text-xl">€ {price}</span>
