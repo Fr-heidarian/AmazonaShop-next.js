@@ -25,7 +25,7 @@ export default function Header() {
                 <line x1="3" y1="18" x2="21" y2="18"></line>
               </svg>
             </div>
-            <Link href={"/"} className="btn btn-ghost">
+            <Link href={"/"} className="btn btn-ghost text-2xl">
               AmazonShop
             </Link>
           </div>
