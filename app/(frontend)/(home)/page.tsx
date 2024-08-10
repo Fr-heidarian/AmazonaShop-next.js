@@ -1,12 +1,14 @@
 import ProductCard from "@/components/product/ProductCard";
-import data from "@/lib/data/data";
+import productService from "@/lib/services/productService";
 
-export default function Home() {
+export default async function Home() {
+  const latestProducts = await productService.getLatest();
+
   return (
     <div className="m-8">
       <h2 className="text-2xl m-6">Latest Products</h2>
       <div className="grid grid-cols-4 gap-4">
-        {data.products.map((p) => (
+        {latestProducts.map((p) => (
           <ProductCard key={p.slug} product={p} />
         ))}
       </div>
