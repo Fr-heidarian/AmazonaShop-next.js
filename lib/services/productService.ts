@@ -10,3 +10,4 @@ const getBySlug = async (slug: string) => {
 
 const productService = { getLatest, getBySlug };
 export default productService;
+ 
