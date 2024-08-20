@@ -15,7 +15,6 @@ const main = async () => {
       .insert(schema.products)
       .values(data.products)
       .returning();
-
     await client.end();
   
   } catch (e) {
