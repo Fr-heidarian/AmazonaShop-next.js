@@ -11,10 +11,12 @@ const main = async () => {
     await client.connect();
     const db = drizzle(client);
     await db.delete(schema.products);
+    
     const res = await db
       .insert(schema.products)
       .values(data.products)
       .returning();
+      console.log(res);
     await client.end();
   
   } catch (e) {
