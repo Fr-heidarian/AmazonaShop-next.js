@@ -11,14 +11,19 @@ const main = async () => {
     await client.connect();
     const db = drizzle(client);
     await db.delete(schema.products);
-    
-    const res = await db
+    await db.delete(schema.users);
+
+    const resProducts = await db
       .insert(schema.products)
       .values(data.products)
       .returning();
-      console.log(res);
+
+    const resUsers = await db
+      .insert(schema.users)
+      .values(data.users)
+      .returning();
+
     await client.end();
-  
   } catch (e) {
     throw new Error("Failed to seed database");
   }
