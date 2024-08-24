@@ -2,6 +2,7 @@ import productService from "@/lib/services/productService";
 import Link from "next/link";
 import Image from "next/image";
 import Rating from "@/components/product/Rating";
+import AddToCart from "@/components/product/AddToCart";
 
 type props = {
   params: { slug: string };
@@ -75,9 +76,9 @@ export default async function productDetailsPage({ params }: props) {
               </div>
               {countInStock !== 0 && (
                 <div className="card-actions">
-                  <button className="btn bg-rose-500 text-white w-full font-semibold">
-                    Add to Card
-                  </button>
+                  <AddToCart
+                    item={{ ...product, qty: 0, color: "", size: "" }}
+                  />
                 </div>
               )}
             </div>
