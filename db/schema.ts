@@ -1,11 +1,11 @@
 import {
-  numeric,
   pgTable,
   text,
   uuid,
   integer,
   boolean,
   time,
+  numeric,
 } from "drizzle-orm/pg-core";
 
 export const products = pgTable("products", {

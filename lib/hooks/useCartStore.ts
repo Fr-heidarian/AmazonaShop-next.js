@@ -2,20 +2,21 @@ import { create } from "zustand";
 import { persist } from "zustand/middleware";
 import { OrderItem } from "../models/OrderModel";
 
-type Cart = { items: OrderItem[]; totalPrice: number };
+type Cart = { items: OrderItem[]; totalPrice: number; totalCount: number };
 
-const initialState: Cart = { items: [], totalPrice: 0 };
+const initialState: Cart = { items: [], totalPrice: 0, totalCount: 0 };
 
 export const cartStore = create<Cart>()(
   persist(() => initialState, { name: "cartStore" })
 );
 
 export default function useCartService() {
-  const { items, totalPrice } = cartStore();
+  const { items, totalPrice, totalCount } = cartStore();
 
   return {
     items,
     totalPrice,
+    totalCount,
     increase: (item: OrderItem) => {
       const exist = items.find((x) => x.slug === item.slug);
       const updatedCartItems = exist
@@ -24,8 +25,8 @@ export default function useCartService() {
           )
         : [...items, { ...item, qty: 1 }];
 
-      const totalPrice = items.reduce((acc, x) => acc + x.price * x.qty, 0);
-      cartStore.setState({ items: updatedCartItems, totalPrice });
+      const { totalPrice, totalCount } = updateCartInfo(items);
+      cartStore.setState({ items: updatedCartItems, totalPrice, totalCount });
     },
 
     decrease: (item: OrderItem) => {
@@ -40,8 +41,15 @@ export default function useCartService() {
               x.slug === item.slug ? { ...exist, qty: exist.qty - 1 } : x
             );
 
-      const totalPrice = items.reduce((acc, x) => acc + x.price * x.qty, 0);
-      cartStore.setState({ items: updatedCartItems, totalPrice });
+      const { totalPrice, totalCount } = updateCartInfo(items);
+      cartStore.setState({ items: updatedCartItems, totalPrice, totalCount });
     },
   };
 }
+
+const updateCartInfo = (items: OrderItem[]) => {
+  return {
+    totalPrice: items.reduce((acc, x) => acc + x.price * x.qty, 0),
+    totalCount: items.reduce((acc, x) => acc + x.qty, 0),
+  };
+};
