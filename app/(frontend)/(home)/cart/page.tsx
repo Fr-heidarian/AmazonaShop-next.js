@@ -6,13 +6,17 @@ import Link from "next/link";
 // export const metadata = { title: "Shopping Cart" };
 
 export default function CartPage() {
-  const { items} = useCartService();
+  const { items ,clear} = useCartService();
   return (
     <div>
       <h1>Shopping Cart</h1>
       {items.length === 0 ? (
         <div>
-          Cart is empty<Link href={"/"} className="text-rose-400 text-xl"> Go Shopping</Link>
+          Cart is empty
+          <Link href={"/"} className="text-rose-400 text-xl">
+            {" "}
+            Go Shopping
+          </Link>
         </div>
       ) : (
         <div className="overflow-x-auto">
@@ -55,6 +59,12 @@ export default function CartPage() {
           </table>
         </div>
       )}
+      <button
+        onClick={() => clear()}
+        className="bg-red-500 text-white font-bold py-2 px-4 m-4 rounded hover:bg-rose-700 transition duration-300"
+      >
+        Clear Cart
+      </button>
     </div>
   );
 }

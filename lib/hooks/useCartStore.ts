@@ -46,7 +46,9 @@ export default function useCartService() {
       const { totalPrice, totalCount } = updateCartInfo(updatedCartItems);
       cartStore.setState({ items: updatedCartItems, totalPrice, totalCount });
     },
-
+    clear: () => {
+      cartStore.setState({ items: [], totalCount: 0, totalPrice: 0 });
+    },
   };
 }
 
