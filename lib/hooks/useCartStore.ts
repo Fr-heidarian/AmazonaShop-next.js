@@ -6,9 +6,11 @@ type Cart = { items: OrderItem[]; totalPrice: number; totalCount: number };
 
 const initialState: Cart = { items: [], totalPrice: 0, totalCount: 0 };
 
-export const cartStore = create<Cart>()(
-  persist(() => initialState, { name: "cartStore" })
-);
+// export const cartStore = create<Cart>()(
+//   persist(() => initialState, { name: "cartStore" })
+// );
+
+export const cartStore = create<Cart>(() => initialState);
 
 export default function useCartService() {
   const { items, totalPrice, totalCount } = cartStore();
@@ -25,7 +27,7 @@ export default function useCartService() {
           )
         : [...items, { ...item, qty: 1 }];
 
-      const { totalPrice, totalCount } = updateCartInfo(items);
+      const { totalPrice, totalCount } = updateCartInfo(updatedCartItems);
       cartStore.setState({ items: updatedCartItems, totalPrice, totalCount });
     },
 
@@ -41,9 +43,10 @@ export default function useCartService() {
               x.slug === item.slug ? { ...exist, qty: exist.qty - 1 } : x
             );
 
-      const { totalPrice, totalCount } = updateCartInfo(items);
+      const { totalPrice, totalCount } = updateCartInfo(updatedCartItems);
       cartStore.setState({ items: updatedCartItems, totalPrice, totalCount });
     },
+
   };
 }
 

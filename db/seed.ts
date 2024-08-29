@@ -26,6 +26,7 @@ const main = async () => {
     await client.end();
   } catch (e) {
     throw new Error("Failed to seed database");
+    // console.log(e.message);
   }
 };
 
