@@ -1,6 +1,6 @@
 import Link from "next/link";
 
-export default function LoginPage() {
+
   return (
     <div className="relative flex flex-col items-center justify-center h-screen overflow-hidden">
       <Link
