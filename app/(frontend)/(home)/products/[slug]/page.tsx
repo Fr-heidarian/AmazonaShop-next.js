@@ -26,7 +26,7 @@ export default async function productDetailsPage({ params }: props) {
   } = product;
   return (
     <div className="m-4">
-      <Link href="/" className="text-gray-600 font-bold">
+      <Link href="/" className="text-gray-600 font-bold hover:text-gray-900">
         back to products
       </Link>
       <div className="grid grid-cols-1 md:grid-cols-5 gap-4">
