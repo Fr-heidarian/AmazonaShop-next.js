@@ -1,7 +1,11 @@
+"use client";
+
 import { product } from "@/lib/models/ProductModel";
 import Link from "next/link";
 import Image from "next/image";
 import Rating from "./Rating";
+import useCartService from "@/lib/hooks/useCartStore";
+import AddToCart from "./AddToCart";
 
 type props = {
   product: product;
@@ -9,6 +13,7 @@ type props = {
 
 export default function ProductCard({ product }: props) {
   const { image, slug, name, brand, price, rating, numReviews } = product;
+  const { increase } = useCartService();
 
   return (
     <div className="card bg-secondary-content mb-4 rounded-lg shadow-lg">
@@ -35,6 +40,7 @@ export default function ProductCard({ product }: props) {
         <div className="card-actions">
           <span className="text-xl">€ {price}</span>
         </div>
+        <AddToCart item={{...product,qty:1}}/>
       </div>
     </div>
   );
