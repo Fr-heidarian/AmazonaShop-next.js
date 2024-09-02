@@ -1,5 +1,10 @@
 import Link from "next/link";
+import { FormEvent } from "react";
 
+export default function LoginPage() {
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault();
+  };
 
   return (
     <div className="relative flex flex-col items-center justify-center h-screen overflow-hidden">
@@ -13,7 +18,7 @@ import Link from "next/link";
         <h1 className="text-3xl font-semibold text-center text-gray-700">
           Sign in
         </h1>
-        <form className="space-y-4">
+        <form className="space-y-4" onSubmit={handleSubmit}>
           <div>
             <label className="label">
               <span className="text-base label-text">Email</span>
