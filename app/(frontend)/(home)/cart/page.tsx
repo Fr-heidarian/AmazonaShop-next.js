@@ -3,11 +3,13 @@
 import AddToCart from "@/components/product/AddToCart";
 import useCartService from "@/lib/hooks/useCartStore";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 
 // export const metadata = { title: "Shopping Cart" };
 
 export default function CartPage() {
   const { items, clear, totalCount, totalPrice } = useCartService();
+  const router = useRouter();
   return (
     <div className="m-5">
       <h1>Shopping Cart</h1>
@@ -69,7 +71,10 @@ export default function CartPage() {
                   € {totalPrice}
                 </h1>
               </div>
-              <button className="btn bg-rose-500 text-white font-semibold">
+              <button
+                className="btn bg-rose-500 text-white font-semibold"
+                onClick={() => router.push("/shipping")}
+              >
                 Place Order
               </button>
             </div>
